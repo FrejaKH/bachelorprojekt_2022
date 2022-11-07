@@ -6,6 +6,31 @@ body {
 
 /*----------------------------------------------------------------Index/cargallery----------------------------------------------------------------------------------------*/
 
+.cargallery_container{
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.image_container img{
+    width:100%;
+}
+
+.text_container h2{
+   font-size: 24px;
+   font-weight: bold;
+}
+
+.text_container h3{
+    font-size: 20px;
+ }
+
+.text_container p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /*----------------------------------------------------------------Cardetails----------------------------------------------------------------------------------------*/
 
