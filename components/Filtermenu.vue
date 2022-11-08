@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>Filtermenu</p>
+  <div class="filtermenu_container">
+    <button class="filtermenu_btn">Mærke</button>
   </div>
 </template>
 

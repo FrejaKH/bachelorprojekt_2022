@@ -6,14 +6,46 @@ body {
 
 /*----------------------------------------------------------------Index/cargallery----------------------------------------------------------------------------------------*/
 
+#index_container{
+    text-align: center;
+    margin: 20px 0;
+}
+
+#cargallery_container{
+    display: flex;
+}
+
+.filtermenu_container{
+    width: 15%;
+}
+
+.filtermenu_btn{
+    width:80%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+}
+
+.sort_after{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px 0;
+}
+
 .cargallery_container{
-    width: 100%;
+    width: 85%;
     padding: 0;
     margin: 0 auto;
 }
 
 .image_container img{
     width:100%;
+}
+
+.text_container{
+    text-align: left;
 }
 
 .text_container h2{

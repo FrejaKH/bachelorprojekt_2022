@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <Filtermenu/>
-    <Cargallery/>
+  <div id="index_container">
+    <h1>Privatleasing</h1>
+
+    <div id="cargallery_container">
+      <Filtermenu/>
+      <Cargallery/>
+    </div>
   </div>
 </template>
 

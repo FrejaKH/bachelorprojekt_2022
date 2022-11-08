@@ -1,10 +1,14 @@
 export const state = () => ({
-    cars: null,
+    cars: [],
 });
 
 export const mutations = {
     saveCars(state, cars){
-        state.cars = cars;
+        for(let i = 0; i < cars.length; i++){
+            for(let j = 0; j < cars[i].length; j++){
+                state.cars.push(cars[i][j]);
+            }
+        }
     }
 }
 
@@ -13,3 +17,4 @@ export const getters = {
         return state.cars.filter(car => car.sku == id);
     },
 }
+
