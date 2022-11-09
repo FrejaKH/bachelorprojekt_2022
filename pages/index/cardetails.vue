@@ -1,21 +1,33 @@
 <template>
   <div>
-    <h1>Cardetails</h1>
+    <BackBtn/>
+    <CardetailsSection1 :data="getCar"/>
   </div>
 </template>
 
 <script>
+
+import BackBtn from '../../components/BackBtn.vue'
+import CardetailsSection1 from '../../components/CardetailsSection1.vue';
+
 export default {
     name: 'Cardetails',
+    components: {
+      BackBtn,
+      CardetailsSection1,
+    },
     data(){
         return{
-            // id: this.$forceUpdate.query.id,
+            id: this.$route.query.id,
             car: null,
         }
     },
-    // mounted(){
-    //     this.car = this.$store.getters.getCar(this.id);
-    // }
+    computed: {
+      getCar(){
+        return this.car = this.$store.getters.getCar(this.id);
+      }
+
+    }
 
 }
 </script>

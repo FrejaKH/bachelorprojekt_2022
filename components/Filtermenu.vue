@@ -1,8 +1,8 @@
 <template>
   <div class="filtermenu_container">
-
+    <h5>Filtrér</h5>
     <div class="filtermenu_brand">
-      <button class="filtermenu_btn">Mærke<i class="fa fa-angle-down"></i></button>
+      <button class="filtermenu_btn"><strong>Mærke</strong></button>
       <form class="form_brand">
         <div class="checkbox" v-for="brand in brands" :key="brand">
           <input type="checkbox" :value="brand" v-model="formdata_brands" :true-value=brand @change="filter">
