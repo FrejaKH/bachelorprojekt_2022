@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-6 cargallery" v-for="car in cars" :key="car.id">
-                <!-- <NuxtLink :to="{ name: 'cardetails', query: {id: car?.id} }"></NuxtLink> -->
+                <NuxtLink :to="{ name: 'cardetails', query: {id: car.id} }">
                 <div class="image_container">
                     <img :src="`${car.image.url}`" :alt="car.brandName">
                 </div>
@@ -23,6 +23,7 @@
                     <p>{{car.name}}</p>
                     <h3>{{car.monthlyPayment}} kr./måned</h3>
                 </div>
+                </NuxtLink>
             </div>
         </div>
     </div>
@@ -39,7 +40,7 @@
     },
     computed: {
         cars(){
-            let carsFromStore = [...this.$store.state.cars];
+            let carsFromStore = [...this.$store.state.filtered_cars];
             if(this.sort_after == 'A_Z'){
                 return carsFromStore.sort((a, b) => (a.brandName + a.name.trimStart().split(" ")[0]).toLowerCase().localeCompare((b.brandName + b.name.trimStart().split(" ")[0]).toLowerCase()));
             }else if(this.sort_after == 'Z_A'){
