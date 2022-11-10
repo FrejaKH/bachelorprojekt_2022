@@ -3,6 +3,7 @@
     <BackBtn/>
     <CardetailsSection1 :data="getCar"/>
     <QR :data="getCar"/>
+    <BudgetForm :data="getCar"/>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import BackBtn from '../../components/BackBtn.vue'
 import CardetailsSection1 from '../../components/CardetailsSection1.vue';
 import QR from '../../components/QR.vue'
+import BudgetForm from '../../components/BudgetForm.vue'
 
 export default {
     name: 'Cardetails',
@@ -18,6 +20,7 @@ export default {
       BackBtn,
       CardetailsSection1,
       QR,
+      BudgetForm,
     },
     data(){
         return{
