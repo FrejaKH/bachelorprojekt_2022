@@ -22,6 +22,10 @@
                     <h2>{{car.brandName + ' ' + car.name.trimStart().split(" ")[0]}}</h2>
                     <p>{{car.name}}</p>
                     <h3>{{car.monthlyPayment}} kr./måned</h3>
+                    <div class="text_container_inner">
+                        <span>Førstegangsydelse: {{car.firstPayment}}</span>
+                        <span>{{car.kmPerYear}} km/år</span>
+                    </div>
                 </div>
                 </NuxtLink>
             </div>

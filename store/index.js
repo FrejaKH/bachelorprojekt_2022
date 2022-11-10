@@ -34,9 +34,7 @@ export const mutations = {
                     state.filtered_cars.push(array[i][j]);
                 }
             }
-
         }
-
     }
 }
 

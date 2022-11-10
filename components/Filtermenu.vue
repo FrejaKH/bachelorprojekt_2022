@@ -10,12 +10,13 @@
         </div>
       </form>
     </div>
-
+    <div>
+      <button class="nulstil_btn">Nulstil filtrering</button>
+    </div>
   </div>
 </template>
 
 <script>
-
 export default {
     name: 'Filtermenu',
     data(){
@@ -34,9 +35,9 @@ export default {
     },
     methods:{
       filter(){
-        this.$store.commit('saveFilter', this.formdata_brands)
+        this.$store.commit('saveFilter', this.formdata_brands);
       }
     }
-
 }
 </script>
+

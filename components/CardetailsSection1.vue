@@ -6,7 +6,19 @@
     </div>
     
     <div class="cardetailsSection1_container2 col-lg-6">
-
+        <div class="heading">
+            <h1><strong>{{carData.brandName + ' ' + carData.name.trimStart().split(" ")[0]}}</strong></h1>
+            <h2>{{carData.name.trimStart()}}</h2>
+        </div>
+        <div class="price">
+            <h3><strong>{{carData.monthlyPayment}} kr./måned</strong></h3>
+        </div>
+        <div class="price2">
+            <div>
+                <span>Førstegangsydelse</span>
+                <span>{{carData.firstPayment}} kr.</span>
+            </div>
+        </div>
     </div>
 
   </div>

@@ -1,17 +1,14 @@
 <template>
   <div>
-    <button class="back_btn" @click="goBack">Tilbage</button>
+    <NuxtLink to="/">
+      <button class="back_btn">Tilbage</button>
+    </NuxtLink>
   </div>
 </template>
 
 <script>
 export default {
     name: 'BackBtn',
-    method: {
-        goBack(){
-            
-        }
-    }
 }
 </script>
 

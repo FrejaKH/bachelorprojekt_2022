@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div id="cardetails_container">
     <BackBtn/>
     <CardetailsSection1 :data="getCar"/>
+    <QR :data="getCar"/>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 
 import BackBtn from '../../components/BackBtn.vue'
 import CardetailsSection1 from '../../components/CardetailsSection1.vue';
+import QR from '../../components/QR.vue'
 
 export default {
     name: 'Cardetails',
     components: {
       BackBtn,
       CardetailsSection1,
+      QR,
     },
     data(){
         return{

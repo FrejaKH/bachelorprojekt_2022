@@ -2,7 +2,8 @@
 
 :root {
     --av-blue: #004878;
-    --av-grey: #f2f3f6;
+    --av-light-grey: #f2f3f6;
+    --av-dark-grey: #49565F;
     --main-text: #1E2327;
     --gradient: linear-gradient(209.44deg,#16a2ff,#004878);
 }
@@ -19,6 +20,7 @@ body {
 
 .filtermenu_container{
     width: 15%;
+ 
 }
 
 .filtermenu_btn{
@@ -51,6 +53,15 @@ body {
     margin-right: 5px;
 }
 
+.nulstil_btn{
+    width: 60%;
+    height: 50px;
+    background: var(--gradient);
+    color: #ffffff;
+    border: none;
+    margin-top: 20px;
+}
+
 /*----------------------------------------------------------------Cargallery----------------------------------------------------------------------------------------*/
 
 #index_container{
@@ -80,7 +91,7 @@ body {
 .cargallery_container{
     width: 85%;
     padding: 0;
-    margin: 0 auto;
+    margin: 0 0 0 20px;
 }
 
 .cargallery a{
@@ -109,10 +120,17 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 10px 0 20px 0 !important;
+    color: var(--av-dark-grey);
+}
+
+.text_container_inner span{
+    font-size: 12px;
+    display: block;
 }
 
 .totop_btn{
-    width:50px;
+    width: 50px;
     height: 50px;
     background: var(--gradient);
     border: none;
@@ -140,7 +158,34 @@ body {
     left: 0;
 }
 
+#cardetails_container{
+    padding: 40px 20px;
+}
+
+.cardetailsSection1_container{
+    width: 100%;
+}
+
 .cardetailsSection1_container1 img{
     width: 100%;
+}
+
+.cardetailsSection1_container2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cardetailsSection1_container2 h2{
+    font-size: 24px;
+}
+
+.qr_container{
+    width: 100%;
+    background-color: var(--av-light-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
 }
  
