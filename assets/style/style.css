@@ -221,6 +221,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .form_btn_container{
@@ -229,6 +230,7 @@ body {
     margin: 10px 0;
     background-color: #ffffff;
     overflow: hidden;
+    border: 1px solid var(--av-dark-grey);
 }
 
 .form_btn{
@@ -240,7 +242,11 @@ body {
     padding: 10px 30px;
     background-color: #ffffff;
     color: var(--main-text);
-    border: 1px solid var(--av-dark-grey);
+    border: none;
+}
+
+.form_btn i{
+    font-size: 30px;
 }
  
 .isOpen{
@@ -251,6 +257,10 @@ body {
 
 .isOpen_btn{
     border: none;
+}
+
+.notOpen{
+    transition: height 1s;
 }
 
 .form_input{
@@ -280,8 +290,12 @@ body {
 
 .result input{
     border: none;
-    border-bottom: 1px solid var(--main-text);
+    border-bottom: double 3px;
     border-radius: 0;
+}
+
+.result label{
+    font-weight: bold;
 }
 
 .fa-info-circle{
@@ -290,15 +304,5 @@ body {
     margin: 0 30px;
 }
 
-.slider_container{
-    display: flex;
-    align-items: center;
-}
-
-.slider{
-    width:100%;
-    accent-color: var(--av-blue);
-    border: none;
-}
 
 /*----------------------------------------------------------------Udstyr----------------------------------------------------------------------------------------*/
