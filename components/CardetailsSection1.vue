@@ -10,13 +10,17 @@
             <h1><strong>{{carData.brandName + ' ' + carData.name.trimStart().split(" ")[0]}}</strong></h1>
             <h2>{{carData.name.trimStart()}}</h2>
         </div>
-        <div class="price">
-            <h3><strong>{{carData.monthlyPayment}} kr./måned</strong></h3>
+        <div class="monthly_price">
+            <h3><strong>{{carData.monthlyPayment.toLocaleString('de-DE')}} kr./måned</strong></h3>
         </div>
-        <div class="price2">
-            <div>
+        <div>
+            <div class="info">
                 <span>Førstegangsydelse</span>
-                <span>{{carData.firstPayment}} kr.</span>
+                <span>{{carData.firstPayment.toLocaleString('dk-DK')}} kr.</span>
+            </div>
+            <div class="info">
+                <span>Leasingperiode</span>
+                <span>{{carData.leasingPeriod}} mdr.</span>
             </div>
         </div>
     </div>

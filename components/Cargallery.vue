@@ -21,10 +21,10 @@
                 <div class="text_container">
                     <h2>{{car.brandName + ' ' + car.name.trimStart().split(" ")[0]}}</h2>
                     <p>{{car.name}}</p>
-                    <h3>{{car.monthlyPayment}} kr./måned</h3>
+                    <h3>{{car.monthlyPayment.toLocaleString('dk-DK')}} kr./måned</h3>
                     <div class="text_container_inner">
-                        <span>Førstegangsydelse: {{car.firstPayment}}</span>
-                        <span>{{car.kmPerYear}} km/år</span>
+                        <span>Førstegangsydelse: {{car.firstPayment.toLocaleString('dk-DK')}} kr.</span>
+                        <span>{{car.kmPerYear.toLocaleString('dk-DK')}} km/år</span>
                     </div>
                 </div>
                 </NuxtLink>
