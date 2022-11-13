@@ -27,7 +27,7 @@ body {
     width: 100%;
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid #e1e4e9;
     text-align: left;
     padding: 0;
     display: flex;
@@ -54,12 +54,31 @@ body {
 }
 
 .nulstil_btn{
-    width: 60%;
+    width: 80%;
     height: 50px;
     background: var(--gradient);
     color: #ffffff;
     border: none;
     margin-top: 20px;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 1100px) {
+    .nulstil_btn{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .nulstil_btn{
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .filtermenu_container{
+        display: none;
+    }
 }
 
 /*----------------------------------------------------------------Cargallery----------------------------------------------------------------------------------------*/
@@ -142,7 +161,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px  0 0 5px;
 }
+
 
 /*----------------------------------------------------------------Cardetails----------------------------------------------------------------------------------------*/
 
@@ -156,6 +177,7 @@ body {
     position: fixed;
     top:20px;
     left: 0;
+    border-radius: 0 5px 5px 0;
 }
 
 #cardetails_container{

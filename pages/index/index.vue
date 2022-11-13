@@ -12,7 +12,7 @@
 <script>
 import Cargallery from '../../components/Cargallery.vue';
 import Filtermenu from '../../components/Filtermenu.vue';
-import ToTopBtn from '../../components/ToTopBtn.vue'
+import ToTopBtn from '../../components/ToTopBtn.vue';
 
 export default {
     name: 'Index',
@@ -21,6 +21,7 @@ export default {
         Filtermenu,
         ToTopBtn,
     }
-
 }
 </script>
+
+
