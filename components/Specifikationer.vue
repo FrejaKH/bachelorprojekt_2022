@@ -1,5 +1,5 @@
 <template>
-    <div id="specifications_container">
+    <div id="">
         <div class="specifications_container">
             <div class="specifications_heading1">
                 <h4>Om denne bil</h4>
