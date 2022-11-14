@@ -13,13 +13,14 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 cargallery" v-for="car in cars" :key="car.id">
+            <div class="col-lg-4 col-md-6 col-sm-6 cargallery" v-for="car in cars" :key="car.id">
                 <NuxtLink :to="{ name: 'cardetails', query: {id: car.id} }">
                 <div class="image_container">
                     <img :src="`${car.image.url}`" :alt="car.brandName">
                 </div>
                 <div class="text_container">
-                    <h2>{{car.brandName + ' ' + car.name.trimStart().split(" ")[0]}}</h2>
+                    <h2 v-if="car.brandName != 'Peugeot'">{{car.brandName + ' ' + car.name.trimStart().split(" ")[0]}}</h2>
+                    <h2 v-else>{{car.name.trimStart().split(" ")[0] + ' ' + car.name.trimStart().split(" ")[1]}}</h2>
                     <p>{{car.name}}</p>
                     <h3>{{car.monthlyPayment.toLocaleString('dk-DK')}} kr./måned</h3>
                     <div class="text_container_inner">
@@ -30,6 +31,7 @@
                 </NuxtLink>
             </div>
         </div>
+        <div class="whitespace"></div>
     </div>
   </template>
   

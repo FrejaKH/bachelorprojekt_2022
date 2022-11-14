@@ -4,15 +4,17 @@
     <CardetailsSection1 :data="getCar"/>
     <QR :data="getCar"/>
     <BudgetForm :data="getCar"/>
+    <Specifikationer :data="getCar"/>
   </div>
 </template>
 
 <script>
 
-import BackBtn from '../../components/BackBtn.vue'
+import BackBtn from '../../components/BackBtn.vue';
 import CardetailsSection1 from '../../components/CardetailsSection1.vue';
-import QR from '../../components/QR.vue'
-import BudgetForm from '../../components/BudgetForm.vue'
+import QR from '../../components/QR.vue';
+import BudgetForm from '../../components/BudgetForm.vue';
+import Specifikationer from '../../components/Specifikationer.vue';
 
 export default {
     name: 'Cardetails',
@@ -21,6 +23,7 @@ export default {
       CardetailsSection1,
       QR,
       BudgetForm,
+      Specifikationer,
     },
     data(){
         return{

@@ -1,78 +1,118 @@
 <template>
   <div class="budgetform_container">
-    <div>
-        <h4>Beregn udgiften/budgettet for denne bil</h4>
-    </div>
-    <div class="form_btn_container" :class="[isOpen_1 ? 'isOpen' : 'notOpen']">
-        <button v-if="!isOpen" class="form_btn" @click="toggle1"><strong>Beregn udgiften/budgettet for at lease denne bil</strong><i class="fa fa-angle-down"></i></button>
+    <h4>Beregn udgiften/budgettet for denne bil</h4>
+    <div class="form_btn_container" :class="[isOpen_1 ? 'isOpen_1' : 'notOpen']">
+        <button v-if="!isOpen_1" class="form_btn" @click="toggle1"><strong>Beregn udgiften/budgettet for at lease denne bil</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle1"><strong>Beregn udgiften/budgettet for at lease denne bil</strong><i class="fa fa-angle-up"></i></button>
         <form>
             <div class="form_input">
-                <label>Førstegangsydelse</label>
-                <input type="text" v-model="firstPayment" readonly>
-                <label>kr.</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Førstegangsydelse:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="firstPayment" readonly>
+                    <label>kr.</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="form_input">
-                <label>Leasingpris pr. måned</label>
-                <input type="text" v-model="monthlyPayment" readonly>
-                <label>kr.</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Leasingpris pr. måned:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="monthlyPayment" readonly>
+                    <label>kr.</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="form_input">
-                <label>Grøn ejerafgift</label>
-                <input type="text" v-model="ejerafgift" readonly>
-                <label>kr. pr. måned</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Grøn ejerafgift:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="ejerafgift" readonly>
+                    <label>kr. pr. måned</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="form_input">
-                <label>Forsikring</label>
-                <input type="text" v-model="forsikring">
-                <label>kr. pr. måned</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Forsikring:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="forsikring">
+                    <label>kr. pr. måned</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="form_input">
-                <label>Ønsket budgetperiode:</label>
-                <input type="number" v-model="periode" min="1">
-                <label>måneder</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Ønsket budgetperiode:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="number" v-model="periode" min="1">
+                    <label>måneder</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="result">
-                <label>Total:</label>
-                <input v-if="forsikring && periode" type="text" v-model="total">
-                <input v-else type="text">
-                <label v-if="periode > 1">kr. for {{periode}} måneder inkl. førstegangsydelse</label>
-                <label v-else>kr. for {{periode}} måned inkl. førstegangsydelse</label>
+                <div class="form_input_heading">
+                    <label>Total:</label>
+                </div>
+                <div class="form_input_text">
+                    <input v-if="forsikring && periode" type="text" v-model="total">
+                    <input v-else type="text">
+                    <label v-if="periode > 1">kr. for {{periode}} måneder</label>
+                    <label v-else-if="periode == 1">kr. for {{periode}} måned</label>
+                    <label v-else>kr.</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
         </form>
     </div>
-    <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen' : 'notOpen']">
-        <button v-if="!isOpen" class="form_btn" @click="toggle2"><strong>Beregn årligt brændstofforbrug</strong><i class="fa fa-angle-down"></i></button>
+    <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen_2' : 'notOpen']">
+        <button v-if="!isOpen_2" class="form_btn" @click="toggle2"><strong>Beregn årligt brændstofforbrug</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle2"><strong>Beregn årligt brændstofforbrug</strong><i class="fa fa-angle-up"></i></button>
         <form>
             <div class="form_input">
-                <label>Antal km årligt</label>
-                <input type="text" v-model="kmYear">
-                <label>km</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Antal km årligt:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="kmYear">
+                    <label>km</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="form_input">
-                <label>Brændstofpris</label>
-                <input type="text" v-model="fuelPrice">
-                <label>kr./l</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Brændstofpris:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="fuelPrice">
+                    <label>kr./l</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="form_input">
-                <label>Km/l</label>
-                <input type="text" v-model="carData.fuelEfficiency" readonly>
-                <label>km/l</label>
-                <label><i class="fa fa-info-circle"></i></label>
+                <div class="form_input_heading">
+                    <label>Km/l:</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="carData.fuelEfficiency" readonly>
+                    <label>km/l</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
             </div>
             <div class="result">
-                <label>Total:</label>
-                <input v-if="kmYear && fuelPrice" type="text" v-model="total_fuel">
-                <input v-else type="text">
-                <label>kr. årligt</label>
+                <div class="form_input_heading">
+                    <label>Total:</label>
+                </div>
+                <div class="form_input_text">
+                    <input v-if="kmYear && fuelPrice" type="text" v-model="total_fuel">
+                    <input v-else type="text">
+                    <label>kr. årligt</label>
+                </div>
             </div>
         </form>
     </div>

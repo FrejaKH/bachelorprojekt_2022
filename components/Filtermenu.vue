@@ -10,7 +10,7 @@
         </div>
       </form>
     </div>
-    <div>
+    <div class="nulstil_btn_container">
       <button class="nulstil_btn">Nulstil filtrering</button>
     </div>
   </div>
