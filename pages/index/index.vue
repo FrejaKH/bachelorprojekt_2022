@@ -1,5 +1,8 @@
 <template>
   <div id="index_container">
+    <div class="logo" @click="reload">
+      <img src="../../assets/img/av_logo.jpg" alt="logo">
+    </div>
     <h1>Privatleasing</h1>
     <div id="cargallery_container">
       <Filtermenu/>
@@ -20,6 +23,11 @@ export default {
         Cargallery,
         Filtermenu,
         ToTopBtn,
+    },
+    methods: {
+      reload(){
+        return window.location.reload();
+      }
     }
 }
 </script>

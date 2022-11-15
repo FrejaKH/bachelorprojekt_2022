@@ -176,7 +176,7 @@ export default {
             monthlyPayment: this.data[0].monthlyPayment.toLocaleString('dk-DK'),
             firstPayment: this.data[0].firstPayment.toLocaleString('dk-DK'),
             ejerafgift: this.data[0].semiAnnualVehicleExciseDuty/6,
-            forsikring: null,
+            forsikring: 361,
             periode: null,
             kmYear: null,
             fuelPrice: null,
