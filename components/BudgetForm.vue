@@ -106,7 +106,7 @@
             </div>
             <div class="result">
                 <div class="form_input_heading">
-                    <label>Total:</label>
+                    <label>Totalt brændstofforbrug:</label>
                 </div>
                 <div class="form_input_text">
                     <input v-if="kmYear && fuelPrice" type="text" v-model="total_fuel">
@@ -114,11 +114,48 @@
                     <label>kr. årligt</label>
                 </div>
             </div>
+            <div class="total">
+                <div class="form_input_heading">
+                    <label>Samlet pris:</label>
+                </div>
+                <div class="form_input_text">
+                    <input v-if="total && kmYear && fuelPrice" type="text" v-model="total_all">
+                    <input v-else type="text">
+                    <label v-if="periode > 1">kr. for {{periode}} måneder</label>
+                    <label v-else-if="periode == 1">kr. for {{periode}} måned</label>
+                    <label v-else>kr.</label>
+                </div>
+            </div>
         </form>
     </div>
-    <!-- <div class="form_btn_container">
-        <button>Dækopbevaring<i class="fa fa-angle-down"></i></button>
-    </div> -->
+ <div class="form_btn_container" :class="[isOpen_3 ? 'isOpen_3' : 'notOpen']">
+        <button v-if="!isOpen_3" class="form_btn" @click="toggle3"><strong>Dækopbevaring</strong><i class="fa fa-angle-down"></i></button>
+        <button v-else class="form_btn" @click="toggle3"><strong>Dækopbevaring</strong><i class="fa fa-angle-up"></i></button>
+        <form>
+            <div class="form_input">
+                <div class="form_input_heading">
+                    <label>Dækopbevaring</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="text" v-model="tyrestorage">
+                    <label>kr. årligt</label>
+                    <label><i class="fa fa-info-circle"></i></label>
+                </div>
+            </div>
+            <div class="total">
+                <div class="form_input_heading">
+                    <label>Samlet pris:</label>
+                </div>
+                <div class="form_input_text">
+                    <input v-if="(forsikring && periode) || (kmYear && fuelPrice)" type="text" v-model="total_with_tyrestorage">
+                    <input v-else type="text">
+                    <label v-if="periode > 1">kr. for {{periode}} måneder</label>
+                    <label v-else-if="periode == 1">kr. for {{periode}} måned</label>
+                    <label v-else>kr.</label>
+                </div>
+            </div>
+        </form>
+    </div>
   </div>
 </template>
 
@@ -143,16 +180,33 @@ export default {
             periode: null,
             kmYear: null,
             fuelPrice: null,
+            tyrestorage: 2000,
         }
     },
     computed: {
         total(){
             let total = ((this.carData.firstPayment/this.periode) + (this.carData.monthlyPayment*this.periode) + (this.ejerafgift*this.periode) + (this.forsikring*this.periode))
-            return total.toFixed(2).replace(".", ",");
+            return total.toFixed(2);
         },
         total_fuel(){
             let total_fuel = ((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)
-            return total_fuel.toFixed(2).replace(".", ",");
+            return total_fuel.toFixed(2);
+        },
+        total_all(){
+            let total1 = parseFloat(this.total);
+            let total_fuel = parseFloat(this.total_fuel);
+            let periode = parseFloat(this.periode);
+            let total_all = total1 + ((total_fuel/12)*periode);
+            return total_all.toFixed(2);
+        },
+        total_with_tyrestorage(){
+            let tyrestorage = parseFloat(this.tyrestorage);
+            let total_all = parseFloat(this.total_all);
+            let periode = parseFloat(this.periode);
+            console.log(typeof(tyrestorage));
+            console.log(typeof(total_all));
+            let total_with_tyrestorage = total_all + ((tyrestorage/12)*periode);
+            return total_with_tyrestorage.toFixed(2);
         }
     },
     methods: {

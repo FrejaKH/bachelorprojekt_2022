@@ -285,7 +285,13 @@ body {
 }
 
 .isOpen_2{
-    height: 350px;
+    height: 450px;
+    border: 1px solid var(--av-dark-grey);
+    transition: height 1.5s;
+}
+
+.isOpen_3{
+    height: 250px;
     border: 1px solid var(--av-dark-grey);
     transition: height 1.5s;
 }
@@ -303,12 +309,12 @@ body {
     margin: 20px 5px 20px 30px;
 }
 
-.result{
+.result, .total{
     display: flex;
     margin: 50px 5px 0 30px;
 }
 
-.form_input_heading label:nth-child(1), .result label:nth-child(1){
+.form_input_heading label:nth-child(1){
     min-width: 230px;
 }
 
@@ -317,7 +323,7 @@ body {
 }
 
 
-.form_input input, .result input{
+.form_input input, .result input, .total input{
     width: 150px;
     height: 40px;
     border-radius: 5px;
@@ -326,13 +332,13 @@ body {
     text-align: right;
 }
 
-.result input{
+.result input, .total input{
     border: none;
     border-bottom: double 3px;
     border-radius: 0;
 }
 
-.result label{
+.result label, .total label{
     font-weight: bold;
 }
 
@@ -345,14 +351,9 @@ body {
 
 /*----------------------------------------------------------------Specifikationer---------------------------------------------------------------------------------------*/
 
-#specifications_container{
-    width: 100%;
-    padding: 10px 20px;
-}
-
 .specifications_container{
     width: 100%;
-    padding: 0;
+    padding: 10px 20px;
 }
 
 .specifications_heading1{
@@ -425,11 +426,11 @@ body {
     .budgetform_container{
         width: 90%;
     }
-    .form_input label:nth-child(1), .result label:nth-child(1){
-        min-width: 180px;
+    .form_input label:nth-child(1), .result label:nth-child(1), .total label:nth-child(1){
+        min-width: 190px;
     }
     .form_input_text label:nth-child(2){
-        min-width: 120px;
+        min-width: 140px;
     }
     .specifications{
         flex-direction: column;
@@ -462,7 +463,7 @@ body {
 }
 
 @media only screen and (max-width: 693px) {
-    .form_input, .result{
+    .form_input, .result, .total{
         flex-direction: column;
     }
     .form_input_text input{
@@ -472,7 +473,10 @@ body {
         height: 680px;
     }
     .isOpen_2{
-        height: 500px;
+        height: 620px;
+    }
+    .isOpen_3{
+        height: 300px;
     }
     .form_input_heading{
         margin-bottom: 10px;
@@ -496,10 +500,10 @@ body {
     .form_input{
         margin: 20px 10px;
     }
-    .form_input input, .result input{
+    .form_input input, .result input, .total input{
         width: 110px;
     }
-    .result{
+    .result, .total{
         margin: 50px 10px 0 10px;
     }
     .fa-info-circle{

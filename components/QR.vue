@@ -18,6 +18,5 @@ export default {
             carData: this.data[0]
         }
     },
-
 }
 </script>
