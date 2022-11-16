@@ -12,7 +12,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="firstPayment" readonly>
                     <label>kr.</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_firstPayment"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_firstPayment"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -22,7 +22,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="monthlyPayment" readonly>
                     <label>kr. pr. måned:</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_leasingpris"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_leasingpris"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -32,7 +32,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="ejerafgift" readonly>
                     <label>kr. pr. måned</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_ejerafgift"></i></label>
+                   <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_ejerafgift"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -42,7 +42,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="forsikring">
                     <label>kr. pr. måned</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_forsikring"></i></label>
+                   <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -52,7 +52,7 @@
                 <div class="form_input_text">
                     <input type="number" v-model="periode" min="1">
                     <label>måned(er)</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_periode"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_periode"></i>
                 </div>
             </div>
             <div class="result">
@@ -80,7 +80,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="kmYear">
                     <label>km</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_kmYear"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_kmYear"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -90,7 +90,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="fuelPrice">
                     <label>kr./l</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_fuelPrice"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_fuelPrice"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -100,7 +100,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="carData.fuelEfficiency" readonly>
                     <label>km/l</label>
-                    <label><i class="fa fa-info-circle" @click="modalbox_km_l"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_km_l"></i>
                 </div>
             </div>
             <div class="result">
@@ -138,7 +138,7 @@
                 <div class="form_input_text">
                     <input type="text" v-model="tyrestorage">
                     <label>kr. pr. måned</label>
-                    <label><i class="fa fa-info-circle" @click="modal_tyrestorage"></i></label>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modal_tyrestorage"></i>
                 </div>
             </div>
             <div class="total">
@@ -157,6 +157,7 @@
     </div>
     <div class="modalbox_bg" :class="[this.info == null ? 'closeModal' : 'openModal']" @click="closeModal">
         <div class="modalbox">
+            <i class="fa fa-times" aria-hidden="true"></i>
             <h6>{{modalTitle}}</h6>
             <p>{{modalText}}</p>
         </div>
