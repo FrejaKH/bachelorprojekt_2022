@@ -19,8 +19,8 @@
                     <img :src="`${car.image.url}`" :alt="car.brandName">
                 </div>
                 <div class="text_container">
-                    <h2 v-if="car.brandName != 'Peugeot'">{{car.brandName + ' ' + car.name.trimStart().split(" ")[0]}}</h2>
-                    <h2 v-else>{{car.name.trimStart().split(" ")[0] + ' ' + car.name.trimStart().split(" ")[1]}}</h2>
+                    <h2 v-if="car.name.includes(car.brandName)">{{car.name.trimStart().split(" ")[0] + ' ' + car.name.trimStart().split(" ")[1]}}</h2>
+                    <h2 v-else>{{car.brandName + ' ' + car.name.trimStart().split(" ")[0]}}</h2>
                     <p>{{car.name}}</p>
                     <h3>{{car.monthlyPayment.toLocaleString('dk-DK')}} kr./måned</h3>
                     <div class="text_container_inner">
