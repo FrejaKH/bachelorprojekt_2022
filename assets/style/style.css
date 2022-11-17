@@ -224,12 +224,11 @@ body {
     width: 60%;
     display: flex;
     justify-content: space-between;
-    margin: 10px 0;
+    padding: 15px 0;
 }
 
-.info:nth-child(1){
+.info:nth-child(-n+2){
     border-bottom: 2px solid var(--av-light-grey);
-    padding: 10px 0;
 }
 
 /*----------------------------------------------------------------QR-kode----------------------------------------------------------------------------------------*/
@@ -335,17 +334,33 @@ body {
     align-items: center;
 }
 
-.form_input_heading label:nth-child(1){
-    min-width: 230px;
+.form_input_heading label:nth-child(1), .result_heading label:nth-child(1){
+    width: 230px;
 }
 
-.form_input_text label:nth-child(2){
-    min-width: 150px;
-}
-
-
-.form_input input, .result input, .total input{
+.form_input_text p:nth-child(2){
     width: 150px;
+}
+
+.form_input_text, .result_text{
+    display: flex;
+}
+
+.form_input_text p, .result_text p{
+    width: 180px;
+    height: 40px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.form_input_text p:nth-child(2), .result_text p:nth-child(2){
+    justify-content: flex-start;
+}
+
+.form_input input, .dropdown{
+    width: 180px;
     height: 40px;
     border-radius: 5px;
     border: 1px solid var(--border);
@@ -353,7 +368,7 @@ body {
     text-align: right;
 }
 
-.result input, .total input{
+.result p:nth-child(1), .total p:nth-child(1){
     border: none;
     border-bottom: double 3px;
     border-radius: 0;
@@ -472,11 +487,11 @@ body {
     .budgetform_container{
         width: 90%;
     }
-    .form_input label:nth-child(1), .result label:nth-child(1), .total label:nth-child(1){
-        min-width: 190px;
+    .form_input_heading label:nth-child(1){
+        width: 190px;
     }
-    .form_input_text label:nth-child(2){
-        min-width: 140px;
+    .form_input_text p:nth-child(2){
+        width: 120px;
     }
     .specifications{
         flex-direction: column;
@@ -508,11 +523,15 @@ body {
     }
 }
 
-@media only screen and (max-width: 693px) {
+@media only screen and (max-width: 700px) {
     .form_input, .result, .total{
         flex-direction: column;
     }
-    .form_input_text input{
+    .form_input_text p{
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+    .form_input_text input, .dropdown, .form_input_text p{
         margin-left: 0;
     }
     .isOpen_1{
@@ -526,9 +545,6 @@ body {
     }
     .form_input_heading{
         margin-bottom: 10px;
-    }
-    .form_input input, .result input, .total input{
-        width: 110px;
     }
     
 }
@@ -549,7 +565,7 @@ body {
    
 }
 
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 460px) {
     .qr_container h4, .budgetform_container h4{
         font-size: 16px;
     }
@@ -565,6 +581,15 @@ body {
     .form_input_text label:nth-child(2){
         min-width: 115px;
     } 
+    .form_input_text input, .form_input_text p, .result_text p:nth-child(1){
+        width:120px;
+    }
+    .empty_text{
+        max-width: 60px;
+    }
+    .modalbox{
+        width: 350px;
+    }
 }
 
 /*----------------------------------------------------------------Media query cardetails----------------------------------------------------------------------------------------*/

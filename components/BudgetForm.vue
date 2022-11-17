@@ -10,8 +10,8 @@
                     <label>Førstegangsydelse:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="firstPayment" readonly>
-                    <label>kr.</label>
+                    <p>{{carData.firstPayment.toLocaleString('dk-DK')}}</p>
+                    <p>kr.</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_firstPayment"></i>
                 </div>
             </div>
@@ -20,8 +20,8 @@
                     <label>Leasingpris:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="monthlyPayment" readonly>
-                    <label>kr. pr. måned:</label>
+                    <p>{{carData.monthlyPayment.toLocaleString('dk-DK')}}</p>
+                    <p>kr. pr. måned</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_leasingpris"></i>
                 </div>
             </div>
@@ -30,8 +30,9 @@
                     <label>Grøn ejerafgift:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="ejerafgift" readonly>
-                    <label>kr. pr. måned</label>
+                    <p v-if="Number.isInteger(carData.semiAnnualVehicleExciseDuty/6)">{{(carData.semiAnnualVehicleExciseDuty/6)}}</p>
+                    <p v-else>{{(carData.semiAnnualVehicleExciseDuty/6).toFixed(2).replace('.', ',')}}</p>
+                    <p>kr. pr. måned</p>
                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_ejerafgift"></i>
                 </div>
             </div>
@@ -41,7 +42,7 @@
                 </div>
                 <div class="form_input_text">
                     <input type="text" v-model="forsikring">
-                    <label>kr. pr. måned</label>
+                    <p>kr. pr. måned</p>
                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
                 </div>
             </div>
@@ -50,26 +51,31 @@
                     <label>Ønsket budgetperiode:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="number" v-model="periode" min="1">
-                    <label>måned(er)</label>
+                    <select v-model="periode" class="dropdown">
+                        <option disabled value="vaelg">Vælg</option>
+                        <option :value="monthly">Månedlig</option>
+                        <option :value="yearly">Årlig</option>
+                        <option :value="leasingPeriod">Hele leasingperioden</option>
+                    </select>
+                    <p class="empty_text">&nbsp;</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_periode"></i>
                 </div>
             </div>
             <div class="result">
-                <div class="form_input_heading">
+                <div class="result_heading">
                     <label>Total:</label>
                 </div>
-                <div class="form_input_text">
-                    <input v-if="forsikring && periode" type="text" v-model="total1">
-                    <input v-else type="text">
-                    <label v-if="periode > 1">kr. for {{periode}} måneder</label>
-                    <label v-else-if="periode == 1">kr. pr. måned</label>
-                    <label v-else>kr.</label>
+                <div class="result_text">
+                    <p v-if="periode != 'vaelg'" >{{total_car.toFixed(2).replace('.',',')}}</p>
+                    <p v-else></p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
+                    <p v-else-if="periode == 1">kr. pr. måned</p>
+                    <p v-else>kr.</p>
                 </div>
             </div>
         </form>
     </div>
-    <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen_2' : 'notOpen']">
+    <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen_2' : 'notOpen']" v-if="carData.fuelType == ('Benzin' || 'Diesel')">
         <button v-if="!isOpen_2" class="form_btn" @click="toggle2"><strong>Beregn månedligt brændstofforbrug</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle2"><strong>Beregn månedligt brændstofforbrug</strong><i class="fa fa-angle-up"></i></button>
         <form>
@@ -79,7 +85,7 @@
                 </div>
                 <div class="form_input_text">
                     <input type="text" v-model="kmYear">
-                    <label>km</label>
+                    <p>km</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_kmYear"></i>
                 </div>
             </div>
@@ -89,7 +95,7 @@
                 </div>
                 <div class="form_input_text">
                     <input type="text" v-model="fuelPrice">
-                    <label>kr./l</label>
+                    <p>kr./l</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_fuelPrice"></i>
                 </div>
             </div>
@@ -98,31 +104,31 @@
                     <label>Km/l:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="carData.fuelEfficiency" readonly>
-                    <label>km/l</label>
+                    <p>{{carData.fuelEfficiency}}</p>
+                    <p>km/l</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_km_l"></i>
                 </div>
             </div>
             <div class="result">
-                <div class="form_input_heading">
+                <div class="result_heading">
                     <label>Totalt brændstofforbrug:</label>
                 </div>
-                <div class="form_input_text">
-                    <input v-if="kmYear && fuelPrice" type="text" v-model="total_fuel">
-                    <input v-else type="text">
-                    <label>kr. pr. måned</label>
+                <div class="result_text">
+                    <p v-if="kmYear && fuelPrice">{{total_fuel.toFixed(2).replace('.',',')}}</p>
+                    <p v-else></p>
+                    <p>kr. pr. måned</p>
                 </div>
             </div>
             <div class="total">
-                <div class="form_input_heading">
+                <div class="result_heading">
                     <label>Samlet pris:</label>
                 </div>
-                <div class="form_input_text">
-                    <input v-if="total1 && kmYear && fuelPrice" type="text" v-model="total2">
-                    <input v-else type="text">
-                    <label v-if="periode > 1">kr. for {{periode}} måneder</label>
-                    <label v-else-if="periode == 1">kr. pr. måned</label>
-                    <label v-else>kr.</label>
+                <div class="result_text">
+                    <p v-if="total_car && total_fuel">{{total_car_and_fuel.toFixed(2).replace('.',',')}}</p>
+                    <p v-else></p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
+                    <p v-else-if="periode == 1">kr. pr. måned</p>
+                    <p v-else>kr.</p>
                 </div>
             </div>
         </form>
@@ -137,20 +143,20 @@
                 </div>
                 <div class="form_input_text">
                     <input type="text" v-model="tyrestorage">
-                    <label>kr. pr. måned</label>
+                    <p>kr. pr. måned</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modal_tyrestorage"></i>
                 </div>
             </div>
             <div class="total">
-                <div class="form_input_heading">
+                <div class="result_heading">
                     <label>Samlet pris:</label>
                 </div>
-                <div class="form_input_text">
-                    <input v-if="(forsikring && periode) || (kmYear && fuelPrice)" type="text" v-model="total_with_tyrestorage">
-                    <input v-else type="text">
-                    <label v-if="periode > 1">kr. for {{periode}} måneder</label>
-                    <label v-else-if="periode == 1">kr. pr. måned</label>
-                    <label v-else>kr.</label>
+                <div class="result_text">
+                    <p v-if="total_car_and_fuel">{{total_with_tyrestorage.toFixed(2).replace('.',',')}}</p>
+                    <p v-else></p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
+                    <p v-else-if="periode == 1">kr. pr. måned</p>
+                    <p v-else>kr.</p>
                 </div>
             </div>
         </form>
@@ -179,11 +185,11 @@ export default {
             isOpen_1: false,
             isOpen_2: false,
             isOpen_3: false,
-            monthlyPayment: this.data[0].monthlyPayment.toLocaleString('dk-DK'),
-            firstPayment: this.data[0].firstPayment.toLocaleString('dk-DK'),
-            ejerafgift: this.data[0].semiAnnualVehicleExciseDuty/6,
             forsikring: 361,
-            periode: null,
+            periode: 'vaelg',
+            monthly: 1,
+            yearly: 12,
+            leasingPeriod: this.data[0].leasingPeriod,
             kmYear: null,
             fuelPrice: null,
             tyrestorage: 180,
@@ -193,27 +199,26 @@ export default {
         }
     },
     computed: {
-        total1(){
-            let total = ((this.carData.firstPayment/this.periode) + (this.carData.monthlyPayment*this.periode) + (this.ejerafgift*this.periode) + (this.forsikring*this.periode))
-            return total.toFixed(2);
+        total_car(){
+            let total = ((this.carData.firstPayment/this.carData.leasingPeriod) + (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring*this.periode))
+            return total;
         },
         total_fuel(){
-            let total_fuel = ((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)/12
-            return total_fuel.toFixed(2);
+            let total_fuel = (((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)/12)
+            return total_fuel;
         },
-        total2(){
-            let total1 = parseFloat(this.total1);
+        total_car_and_fuel(){
+            let total_car = parseFloat(this.total_car);
             let total_fuel = parseFloat(this.total_fuel);
-            let periode = parseFloat(this.periode);
-            let total2 = total1 + (total_fuel*periode);
-            return total2.toFixed(2);
+            let total_car_and_fuel = total_car + (total_fuel*this.periode);
+            return total_car_and_fuel;
         },
         total_with_tyrestorage(){
             let tyrestorage = parseFloat(this.tyrestorage);
-            let total2 = parseFloat(this.total2);
-            let periode = parseFloat(this.periode);
-            let total_with_tyrestorage = total2 + (tyrestorage*periode);
-            return total_with_tyrestorage.toFixed(2);
+            let total_car_and_fuel = parseFloat(this.total_car_and_fuel);
+            let periode = this.periode;
+            let total_with_tyrestorage = total_car_and_fuel + (tyrestorage*periode);
+            return total_with_tyrestorage;
         }
     },
     methods: {

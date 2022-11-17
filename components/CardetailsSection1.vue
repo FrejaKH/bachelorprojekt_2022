@@ -22,6 +22,11 @@
                 <span>Leasingperiode</span>
                 <span>{{carData.leasingPeriod}} mdr.</span>
             </div>
+            <div class="info">
+                <span>Antal km. pr. år.</span>
+                <span v-if="carData.leasingPeriod > 6">{{carData.kmPerYear.toLocaleString('dk-DK')}} km</span>
+                <span v-else>{{(carData.kmPerYear*2).toLocaleString('dk-DK')}} km</span>
+            </div>
         </div>
     </div>
 

@@ -11,7 +11,8 @@
                 <div class="specifications_data">
                     <div class="data_wrapper">
                         <p>Antal km. pr. år.</p>
-                        <p>{{carData.kmPerYear.toLocaleString('dk-DK')}} km</p>
+                        <p v-if="carData.leasingPeriod > 6">{{carData.kmPerYear.toLocaleString('dk-DK')}} km</p>
+                        <p v-else>{{(carData.kmPerYear*2).toLocaleString('dk-DK')}} km</p>
                     </div>
                     <div class="data_wrapper">
                         <p>Leasingperiode</p>
