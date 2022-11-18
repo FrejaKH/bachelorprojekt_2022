@@ -344,6 +344,7 @@ body {
 
 .form_input_text, .result_text{
     display: flex;
+    align-items: center;
 }
 
 .form_input_text p, .result_text p{
@@ -383,6 +384,11 @@ body {
     font-size: 20px;
 }
 
+.obs_text{
+    font-size: 12px;
+    margin: 20px 0 0 30px;
+}
+
 /*----------------------------------------------------------------Modal---------------------------------------------------------------------------------------*/
 .modalbox_bg{
     top: 0;
@@ -396,14 +402,25 @@ body {
 }
 
 .modalbox{
-    width:400px;
-    padding: 20px;
+    width: 400px;
+    padding: 10px;
     background-color: var(--av-light-grey);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+.modalbox_x{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modalbox p{
+  font-size: 14px;
 }
 
 .closeModal{
@@ -535,7 +552,7 @@ body {
         margin-left: 0;
     }
     .isOpen_1{
-        height: 680px;
+        height: 720px;
     }
     .isOpen_2{
         height: 620px;
@@ -546,7 +563,6 @@ body {
     .form_input_heading{
         margin-bottom: 10px;
     }
-    
 }
 
 @media only screen and (max-width: 575px) {
@@ -572,7 +588,7 @@ body {
     .form_btn{
         font-size: 14px;
     }
-    .form_input{
+    .form_input, .obs_text{
         margin: 20px 10px;
     }
     .result, .total{

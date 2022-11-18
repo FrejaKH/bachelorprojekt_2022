@@ -68,10 +68,13 @@
                 <div class="result_text">
                     <p v-if="periode != 'vaelg'" >{{total_car.toFixed(2).replace('.',',')}}</p>
                     <p v-else></p>
-                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
-                    <p v-else-if="periode == 1">kr. pr. måned</p>
-                    <p v-else>kr.</p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder *</p>
+                    <p v-else-if="periode == 1">kr. pr. måned *</p>
+                    <p v-else>kr. *</p>
                 </div>
+            </div>
+            <div class="obs_text">
+                <p>*Prisen er inklusiv førstegangsydelse, som er fordelt ud over hele leasingperioden</p>
             </div>
         </form>
     </div>
@@ -163,8 +166,10 @@
     </div>
     <div class="modalbox_bg" :class="[this.info == null ? 'closeModal' : 'openModal']" @click="closeModal">
         <div class="modalbox">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            <h6>{{modalTitle}}</h6>
+            <div class="modalbox_x">
+                <i class="fa fa-times" aria-hidden="true" @click="closeModal"></i>
+            </div>
+            <h6><strong>{{modalTitle}}</strong></h6>
             <p>{{modalText}}</p>
         </div>
     </div>
@@ -216,8 +221,7 @@ export default {
         total_with_tyrestorage(){
             let tyrestorage = parseFloat(this.tyrestorage);
             let total_car_and_fuel = parseFloat(this.total_car_and_fuel);
-            let periode = this.periode;
-            let total_with_tyrestorage = total_car_and_fuel + (tyrestorage*periode);
+            let total_with_tyrestorage = total_car_and_fuel + (tyrestorage*this.periode);
             return total_with_tyrestorage;
         }
     },
@@ -234,47 +238,47 @@ export default {
         modalbox_firstPayment(){
             this.info = 'firstPayment';
             this.modalTitle = 'Førstegangsydelse';
-            this.modalText = 'TEST';
+            this.modalText = 'Førstegansydelsen er et beløb, som du betaler ved begyndelsen af leasingaftalen.';
         },
         modalbox_leasingpris(){
             this.info = 'leasingpris';
-            this.modalTitle = 'Leasingperiode';
-            this.modalText = 'TEST';
+            this.modalTitle = 'Leasingpris';
+            this.modalText = 'Leasingprisen er det beløb, du skal betale hver måned imens du leaser bilen.';
         },
         modalbox_ejerafgift(){
             this.info = 'ejerafgift';
             this.modalTitle = 'Grøn ejerafgift';
-            this.modalText = 'TEST';
+            this.modalText = 'Grøn ejerafgift er en afgift, som man som bilejer betaler. Prisen afhænger af bilens forbrug og brændstof.';
         },
         modalbox_forsikring(){
             this.info = 'forsikring';
             this.modalTitle = 'Forsikring';
-            this.modalText = 'TEST';
+            this.modalText = 'Forsikringsbeløbet pr. måned. Det angivne beløb er et gennemsnitligt beløb. Du kan til enhver tid ændre det til din forsikringspris.';
         },
         modalbox_periode(){
             this.info = 'periode';
             this.modalTitle = 'Budgetperiode';
-            this.modalText = 'TEST';
+            this.modalText = 'Angiv hvor lang en periode du ønsker at se budgettet over. Du har mulighed for at vælge imellem: pr. måned, pr. år eller over hele din leasingperiode.';
         },
         modalbox_kmYear(){
             this.info = 'kmYear';
             this.modalTitle = 'Antal km årligt';
-            this.modalText = 'TEST';
+            this.modalText = 'Angiv antallet af km som du mener, du kommer til at køre om året.';
         },
         modalbox_fuelPrice(){
             this.info = 'fuelPrice';
             this.modalTitle = 'Brændstofpris';
-            this.modalText = 'TEST';
+            this.modalText = 'Angiv den brændstodspris, som passer til din bils brændstoftype';
         },
         modalbox_km_l(){
             this.info = 'km_l';
             this.modalTitle = 'Km/l';
-            this.modalText = 'TEST';
+            this.modalText = 'Det angivne tal dækker over, hvor mange kilometer bilen kører pr. liter';
         },
         modal_tyrestorage(){
             this.info = 'tyrestorage';
             this.modalTitle = 'Dækopbevaring';
-            this.modalText = 'TEST';
+            this.modalText = 'Den månedlige pris for at få dine dæk opbevaret hos Autohuset Vestergaard';
         },
         closeModal(){
             this.info = null;
