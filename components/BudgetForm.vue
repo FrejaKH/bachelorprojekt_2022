@@ -2,8 +2,8 @@
   <div class="budgetform_container">
     <h4>Beregn udgiften/budgettet for denne bil</h4>
     <div class="form_btn_container" :class="[isOpen_1 ? 'isOpen_1' : 'notOpen']">
-        <button v-if="!isOpen_1" class="form_btn" @click="toggle1"><strong>Beregn udgiften/budgettet for at lease denne bil</strong><i class="fa fa-angle-down"></i></button>
-        <button v-else class="form_btn" @click="toggle1"><strong>Beregn udgiften/budgettet for at lease denne bil</strong><i class="fa fa-angle-up"></i></button>
+        <button v-if="!isOpen_1" class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-down"></i></button>
+        <button v-else class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-up"></i></button>
         <form>
             <div class="form_input">
                 <div class="form_input_heading">
@@ -79,8 +79,8 @@
         </form>
     </div>
     <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen_2' : 'notOpen']" v-if="carData.fuelType == ('Benzin' || 'Diesel')">
-        <button v-if="!isOpen_2" class="form_btn" @click="toggle2"><strong>Beregn månedligt brændstofforbrug</strong><i class="fa fa-angle-down"></i></button>
-        <button v-else class="form_btn" @click="toggle2"><strong>Beregn månedligt brændstofforbrug</strong><i class="fa fa-angle-up"></i></button>
+        <button v-if="!isOpen_2" class="form_btn" @click="toggle2"><strong>Beregn brændstofforbrug</strong><i class="fa fa-angle-down"></i></button>
+        <button v-else class="form_btn" @click="toggle2"><strong>Beregn brændstofforbrug</strong><i class="fa fa-angle-up"></i></button>
         <form>
             <div class="form_input">
                 <div class="form_input_heading">
@@ -107,7 +107,7 @@
                     <label>Km/l:</label>
                 </div>
                 <div class="form_input_text">
-                    <p>{{carData.fuelEfficiency}}</p>
+                    <p>{{carData.fuelEfficiency.toLocaleString('dk-DK')}}</p>
                     <p>km/l</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_km_l"></i>
                 </div>
@@ -145,7 +145,7 @@
                     <label>Dækopbevaring</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="tyrestorage">
+                    <p>{{tyrestorage.toFixed(2).replace('.',',')}}</p>
                     <p>kr. pr. måned</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modal_tyrestorage"></i>
                 </div>
@@ -197,7 +197,7 @@ export default {
             leasingPeriod: this.data[0].leasingPeriod,
             kmYear: null,
             fuelPrice: null,
-            tyrestorage: 180,
+            tyrestorage: 796/6,
             info: null,
             modalTitle: null,
             modalText: null,
@@ -209,7 +209,13 @@ export default {
             return total;
         },
         total_fuel(){
-            let total_fuel = (((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)/12)
+            let total_fuel;
+            if(this.fuelPrice != null){
+                total_fuel = (((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice.replace(',','.'))/12)
+            }else{
+                total_fuel = (((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)/12)
+            }
+
             return total_fuel;
         },
         total_car_and_fuel(){

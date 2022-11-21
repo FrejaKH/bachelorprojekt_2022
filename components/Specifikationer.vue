@@ -40,7 +40,7 @@
                     </div>
                     <div class="data_wrapper">
                         <p>Brændstofforbrug</p>
-                        <p>{{carData.fuelEfficiency}} km/l</p>
+                        <p>{{carData.fuelEfficiency.toLocaleString('dk-DK')}} km/l</p>
                     </div>
                     <div class="data_wrapper">
                         <p>Antal døre/variant</p>
