@@ -11,7 +11,7 @@
       </form>
     </div>
     <div class="nulstil_btn_container">
-      <button class="nulstil_btn">Nulstil filtrering</button>
+      <button class="nulstil_btn" @click="nulstil">Nulstil filtrering</button>
     </div>
   </div>
 </template>
@@ -36,6 +36,9 @@ export default {
     methods:{
       filter(){
         this.$store.commit('saveFilter', this.formdata_brands);
+      },
+      nulstil(){
+        window.document.location.reload();
       }
     }
 }
