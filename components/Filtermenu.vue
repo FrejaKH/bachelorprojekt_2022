@@ -5,7 +5,7 @@
       <button class="filtermenu_btn"><strong>Mærke</strong></button>
       <form class="form_brand">
         <div class="checkbox" v-for="brand in brands" :key="brand">
-          <input type="checkbox" :value="brand" v-model="formdata_brands" :true-value=brand @change="filter">
+          <input type="checkbox" :value="brand" v-model="formdata_brands" :true-value="brand" @change="filter">
           <label>{{brand}}</label>
         </div>
       </form>

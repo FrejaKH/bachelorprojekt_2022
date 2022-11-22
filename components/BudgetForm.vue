@@ -1,6 +1,6 @@
 <template>
   <div class="budgetform_container">
-    <h4>Beregn udgiften/budgettet for denne bil</h4>
+    <h4>Beregn bilbudget</h4>
     <div class="form_btn_container" :class="[isOpen_1 ? 'isOpen_1' : 'notOpen']">
         <button v-if="!isOpen_1" class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-up"></i></button>
@@ -13,6 +13,10 @@
                     <p>{{carData.firstPayment.toLocaleString('dk-DK')}}</p>
                     <p>kr.</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_firstPayment"></i>
+                </div>
+                <div class="include_price">
+                    <p>Medregn i budgettet</p>
+                    <input type="checkbox" v-model="include_firstPayment">
                 </div>
             </div>
             <div class="form_input">
@@ -41,14 +45,14 @@
                     <label>Forsikring:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="forsikring">
+                    <input type="number" v-model="forsikring">
                     <p>kr. pr. måned</p>
                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
                 </div>
             </div>
             <div class="form_input">
                 <div class="form_input_heading">
-                    <label>Ønsket budgetperiode:</label>
+                    <label>Budgetperiode:</label>
                 </div>
                 <div class="form_input_text">
                     <select v-model="periode" class="dropdown">
@@ -68,13 +72,10 @@
                 <div class="result_text">
                     <p v-if="periode != 'vaelg'" >{{total_car.toFixed(2).replace('.',',')}}</p>
                     <p v-else></p>
-                    <p v-if="periode > 1">kr. for {{periode}} måneder *</p>
-                    <p v-else-if="periode == 1">kr. pr. måned *</p>
-                    <p v-else>kr. *</p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
+                    <p v-else-if="periode == 1">kr. pr. måned</p>
+                    <p v-else>kr.</p>
                 </div>
-            </div>
-            <div class="obs_text">
-                <p>*Prisen er inklusiv førstegangsydelse, som er fordelt ud over hele leasingperioden</p>
             </div>
         </form>
     </div>
@@ -87,7 +88,7 @@
                     <label>Antal km årligt:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="kmYear">
+                    <input type="number" v-model="kmYear">
                     <p>km</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_kmYear"></i>
                 </div>
@@ -97,7 +98,7 @@
                     <label>Brændstofpris:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="text" v-model="fuelPrice">
+                    <input type="number" v-model="fuelPrice">
                     <p>kr./l</p>
                     <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_fuelPrice"></i>
                 </div>
@@ -119,12 +120,14 @@
                 <div class="result_text">
                     <p v-if="kmYear && fuelPrice">{{total_fuel.toFixed(2).replace('.',',')}}</p>
                     <p v-else></p>
-                    <p>kr. pr. måned</p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
+                    <p v-else-if="periode == 1">kr. pr. måned</p>
+                    <p v-else>kr.</p>
                 </div>
             </div>
             <div class="total">
                 <div class="result_heading">
-                    <label>Samlet pris:</label>
+                    <label>Samlet bugdet:</label>
                 </div>
                 <div class="result_text">
                     <p v-if="total_car && total_fuel">{{total_car_and_fuel.toFixed(2).replace('.',',')}}</p>
@@ -137,8 +140,64 @@
         </form>
     </div>
     <div class="form_btn_container" :class="[isOpen_3 ? 'isOpen_3' : 'notOpen']">
-        <button v-if="!isOpen_3" class="form_btn" @click="toggle3"><strong>Dækopbevaring</strong><i class="fa fa-angle-down"></i></button>
-        <button v-else class="form_btn" @click="toggle3"><strong>Dækopbevaring</strong><i class="fa fa-angle-up"></i></button>
+        <button v-if="!isOpen_3" class="form_btn" @click="toggle3"><strong>Sommerdæk / Vinterdæk</strong><i class="fa fa-angle-down"></i></button>
+        <button v-else class="form_btn" @click="toggle3"><strong>Sommerdæk / Vinterdæk</strong><i class="fa fa-angle-up"></i></button>
+        <form>
+            <div class="form_input">
+                <div class="form_input_heading">
+                    <label>Sommerdæk</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="number" v-model="summertyres">
+                    <p>kr.</p>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_summertyres"></i>
+                </div>
+                <div class="include_price">
+                    <p>Medregn i budgettet</p>
+                    <input type="checkbox" v-model="include_summertyres">
+                </div>
+            </div>
+            <div class="form_input">
+                <div class="form_input_heading">
+                    <label>Vinterdæk</label>
+                </div>
+                <div class="form_input_text">
+                    <input type="number" v-model="wintertyres">
+                    <p>kr.</p>
+                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_wintertyres"></i>
+                </div>
+                <div class="include_price">
+                    <p>Medregn i budgettet</p>
+                    <input type="checkbox" v-model="include_wintertyres">
+                </div>
+            </div>
+            <div class="result">
+                <div class="result_heading">
+                    <label>Totalt:</label>
+                </div>
+                <div class="result_text">
+                    <p v-if="summertyres || wintertyres">{{Number(summertyres) + Number(wintertyres)}}</p>
+                    <p v-else></p>
+                    <p>kr.</p>
+                </div>
+            </div>
+            <div class="total">
+                <div class="result_heading">
+                    <label>Samlet budget:</label>
+                </div>
+                <div class="result_text">
+                    <p v-if="include_summertyres || include_wintertyres">{{total_with_tyres.toFixed(2).replace('.',',')}}</p>
+                    <p v-else></p>
+                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
+                    <p v-else-if="periode == 1">kr. pr. måned</p>
+                    <p v-else>kr.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="form_btn_container" :class="[isOpen_4 ? 'isOpen_4' : 'notOpen']">
+        <button v-if="!isOpen_4" class="form_btn" @click="toggle4"><strong>Dækopbevaring</strong><i class="fa fa-angle-down"></i></button>
+        <button v-else class="form_btn" @click="toggle4"><strong>Dækopbevaring</strong><i class="fa fa-angle-up"></i></button>
         <form>
             <div class="form_input">
                 <div class="form_input_heading">
@@ -152,7 +211,7 @@
             </div>
             <div class="total">
                 <div class="result_heading">
-                    <label>Samlet pris:</label>
+                    <label>Samlet budget:</label>
                 </div>
                 <div class="result_text">
                     <p v-if="total_car_and_fuel">{{total_with_tyrestorage.toFixed(2).replace('.',',')}}</p>
@@ -190,6 +249,8 @@ export default {
             isOpen_1: false,
             isOpen_2: false,
             isOpen_3: false,
+            isOpen_4: false,
+            include_firstPayment: false,
             forsikring: 361,
             periode: 'vaelg',
             monthly: 1,
@@ -197,6 +258,10 @@ export default {
             leasingPeriod: this.data[0].leasingPeriod,
             kmYear: null,
             fuelPrice: null,
+            summertyres: null,
+            include_summertyres: false,
+            wintertyres: null,
+            include_wintertyres: false,
             tyrestorage: 796/6,
             info: null,
             modalTitle: null,
@@ -205,28 +270,48 @@ export default {
     },
     computed: {
         total_car(){
-            let total = ((this.carData.firstPayment/this.carData.leasingPeriod) + (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring*this.periode))
-            return total;
+            let total;
+            if(this.include_firstPayment){
+                total = ((this.carData.firstPayment/this.carData.leasingPeriod*this.periode) + (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring*this.periode));
+            }else{
+                total = (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring*this.periode);
+            }
+           return total;
         },
         total_fuel(){
             let total_fuel;
             if(this.fuelPrice != null){
-                total_fuel = (((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice.replace(',','.'))/12)
+                total_fuel = ((((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice.replace(',','.'))/12)*this.periode);
             }else{
-                total_fuel = (((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)/12)
+                total_fuel = ((((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice)/12)*this.periode);
             }
-
             return total_fuel;
         },
         total_car_and_fuel(){
-            let total_car = parseFloat(this.total_car);
-            let total_fuel = parseFloat(this.total_fuel);
-            let total_car_and_fuel = total_car + (total_fuel*this.periode);
+            let total_car = Number(this.total_car);
+            let total_fuel = Number(this.total_fuel);
+            let total_car_and_fuel = total_car + total_fuel;
             return total_car_and_fuel;
         },
+        total_with_tyres(){
+            let total_with_tyres;
+            let total_car = Number(this.total_car);
+            let total_fuel = Number(this.total_fuel);
+            let summertyres = (Number(this.summertyres)/this.leasingPeriod)*this.periode;
+            let wintertyres = (Number(this.wintertyres)/this.leasingPeriod)*this.periode;
+
+            if(this.include_summertyres && this.include_wintertyres){
+                total_with_tyres = total_car + total_fuel + summertyres + wintertyres;
+            }else if(this.include_summertyres && !this.include_wintertyres){
+                total_with_tyres = total_car + total_fuel + summertyres;
+            }else if(!this.include_summertyres && this.include_wintertyres){
+                total_with_tyres = total_car + total_fuel + wintertyres;
+            }
+            return total_with_tyres;
+        },
         total_with_tyrestorage(){
-            let tyrestorage = parseFloat(this.tyrestorage);
-            let total_car_and_fuel = parseFloat(this.total_car_and_fuel);
+            let tyrestorage = Number(this.tyrestorage);
+            let total_car_and_fuel = Number(this.total_car_and_fuel);
             let total_with_tyrestorage = total_car_and_fuel + (tyrestorage*this.periode);
             return total_with_tyrestorage;
         }
@@ -240,6 +325,9 @@ export default {
         },
         toggle3(){
             this.isOpen_3 = !this.isOpen_3;
+        },
+        toggle4(){
+            this.isOpen_4 = !this.isOpen_4;
         },
         modalbox_firstPayment(){
             this.info = 'firstPayment';
@@ -280,6 +368,16 @@ export default {
             this.info = 'km_l';
             this.modalTitle = 'Km/l';
             this.modalText = 'Det angivne tal dækker over, hvor mange kilometer bilen kører pr. liter';
+        },
+        modalbox_summertyres(){
+            this.info = 'summertyres';
+            this.modalTitle = 'Sommerdæk';
+            this.modalText = 'Angiv prisen på de sommerdæk, som passer til din bil';
+        },
+        modalbox_wintertyres(){
+            this.info = 'wintertyres';
+            this.modalTitle = 'Vinterdæk';
+            this.modalText = 'Angiv prisen på de vinterdæk, som passer til din bil';
         },
         modal_tyrestorage(){
             this.info = 'tyrestorage';
