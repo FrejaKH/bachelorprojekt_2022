@@ -1,6 +1,6 @@
 <template>
   <div class="budgetform_container">
-    <h4>Beregn bilbudget</h4>
+    <h4>Beregn dit bilbudget</h4>
     <div class="form_btn_container" :class="[isOpen_1 ? 'isOpen_1' : 'notOpen']">
         <button v-if="!isOpen_1" class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-up"></i></button>
@@ -310,9 +310,15 @@ export default {
             return total_with_tyres;
         },
         total_with_tyrestorage(){
+            let total_with_tyrestorage;
             let tyrestorage = Number(this.tyrestorage);
             let total_car_and_fuel = Number(this.total_car_and_fuel);
-            let total_with_tyrestorage = total_car_and_fuel + (tyrestorage*this.periode);
+            let total_with_tyres = Number(this.total_with_tyres);
+            if(total_with_tyres){
+                total_with_tyrestorage = total_with_tyres + (tyrestorage*this.periode);
+            }else{
+                total_with_tyrestorage = total_car_and_fuel + (tyrestorage*this.periode);
+            }
             return total_with_tyrestorage;
         }
     },
