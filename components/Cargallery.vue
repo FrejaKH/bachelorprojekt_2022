@@ -33,11 +33,11 @@
         </div>
         <div class="whitespace"></div>
     </div>
-  </template>
+</template>
   
-  <script>
+<script>
 
-  export default {
+export default {
     name: 'Cargallery',
     data(){
         return{
@@ -57,7 +57,6 @@
                 return carsFromStore.sort((a, b) => (b.monthlyPayment - a.monthlyPayment));
             }
         }
-    }
-  
-  }
-  </script>
+    }  
+}
+</script>

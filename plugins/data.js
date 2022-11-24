@@ -13,3 +13,15 @@ export default async function ({store}){
    store.commit('saveCars', obj)
 }
 
+// import Data from '../assets/data/data.json';
+
+// export default function ({store}){
+//   store.commit('saveCars', Data);
+// }
+
+
+
+
+
+
+
