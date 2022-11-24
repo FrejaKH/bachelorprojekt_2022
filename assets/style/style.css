@@ -58,7 +58,8 @@ body {
 
 .nulstil_btn_container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
 .nulstil_btn{
@@ -106,6 +107,10 @@ body {
     justify-content: flex-end;
     align-items: center;
     margin: 0 0 10px 0;
+}
+
+.sort_after_select{
+    border: 1px solid var(--border);
 }
 
 .cargallery_container{
@@ -593,11 +598,17 @@ body {
     .cargallery_container{
         width: 70%;
     }
-    .logo{
-        justify-content: center;
+    #index_container h1{
+        font-size: 24px;
+    }
+    .logo img{
+        width: 120px;
     }
     .filtermenu_container{
         width: 30%;
+    }
+    .filtermenu_container h5{
+        font-size: 18px;
     }
     .info{
         width: 100%;
@@ -608,6 +619,9 @@ body {
 }
 
 @media only screen and (max-width: 460px) {
+    .sort_after label{
+        margin-bottom: 20px;
+    }
     .qr_container h4, .budgetform_container h4{
         font-size: 16px;
     }
