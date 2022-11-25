@@ -13,6 +13,8 @@ export default async function ({store}){
    store.commit('saveCars', obj)
 }
 
+// Dette er en backup til, hvis API'et ikke virker
+
 // import Data from '../assets/data/data.json';
 
 // export default function ({store}){

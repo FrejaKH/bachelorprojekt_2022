@@ -1,4 +1,9 @@
 # bachelorprojekt_2022
+Vejledning til at køre projektet.
+Til at få mit projekt til at køre, skal du først skrive: "npm install" i en terminal. Hertil vil du installere de nødvendige dependencies.
+Herefter skal du i terminalen skrive: "npm run dev", hvortil terminalen (højst sandsynlig) vil angive et link, som vil være http://localhost:3000/
+Åben dette link, og projektet åbnes.   
+
 
 ## Build Setup
 
