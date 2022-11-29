@@ -338,7 +338,7 @@ export default {
         modalbox_firstPayment(){
             this.info = 'firstPayment';
             this.modalTitle = 'Førstegangsydelse';
-            this.modalText = 'Førstegansydelsen er et beløb, som du betaler ved begyndelsen af leasingaftalen.';
+            this.modalText = 'Førstegangsydelsen er et beløb, som du betaler ved begyndelsen af leasingaftalen.';
         },
         modalbox_leasingpris(){
             this.info = 'leasingpris';
