@@ -5,7 +5,6 @@ export default async function ({store}){
     await axios.get("https://apim-av-ecommerce-prod.azure-api.net/vehicles/new/leasing?subscription-key=596d157bb64a4cfdbf3023bf10a91643")
     .then(response => {
         obj = response.data;
-        console.log(obj);
     })
     .catch(error => {
       console.log(error);
