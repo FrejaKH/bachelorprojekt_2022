@@ -186,7 +186,7 @@
                     <label>Samlet budget:</label>
                 </div>
                 <div class="result_text">
-                    <p v-if="include_summertyres || include_wintertyres">{{total_with_tyres.toFixed(2).replace('.',',')}}</p>
+                    <p v-if="(include_summertyres && summertyres && periode != 'vaelg') || (include_wintertyres && wintertyres && periode != 'vaelg')">{{total_with_tyres.toFixed(2).replace('.',',')}}</p>
                     <p v-else></p>
                     <p v-if="periode > 1">kr. for {{periode}} måneder</p>
                     <p v-else-if="periode == 1">kr. pr. måned</p>
