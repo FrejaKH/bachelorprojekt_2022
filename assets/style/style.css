@@ -430,8 +430,8 @@ body {
 
 .modalbox{
     width: 400px;
-    padding: 10px;
-    background-color: var(--av-light-grey);
+    padding: 20px;
+    background-color: #ffffff;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -448,6 +448,7 @@ body {
 
 .modalbox p{
   font-size: 14px;
+  margin: 20px 0;
 }
 
 .closeModal{

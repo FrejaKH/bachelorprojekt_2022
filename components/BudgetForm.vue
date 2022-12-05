@@ -12,7 +12,7 @@
                 <div class="form_input_text">
                     <p>{{carData.firstPayment.toLocaleString('dk-DK')}}</p>
                     <p>kr.</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_firstPayment"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_firstPayment"></i>
                 </div>
                 <div class="include_price">
                     <p>Medregn i budgettet</p>
@@ -26,7 +26,7 @@
                 <div class="form_input_text">
                     <p>{{carData.monthlyPayment.toLocaleString('dk-DK')}}</p>
                     <p>kr. pr. måned</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_leasingpris"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_leasingpris"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -37,7 +37,7 @@
                     <p v-if="Number.isInteger(carData.semiAnnualVehicleExciseDuty/6)">{{(carData.semiAnnualVehicleExciseDuty/6)}}</p>
                     <p v-else>{{(carData.semiAnnualVehicleExciseDuty/6).toFixed(2).replace('.', ',')}}</p>
                     <p>kr. pr. måned</p>
-                   <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_ejerafgift"></i>
+                   <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_ejerafgift"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -47,7 +47,7 @@
                 <div class="form_input_text">
                     <input type="number" v-model="forsikring">
                     <p>kr. pr. måned</p>
-                   <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
+                   <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -62,7 +62,7 @@
                         <option :value="leasingPeriod">Hele leasingperioden</option>
                     </select>
                     <p class="empty_text">&nbsp;</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_periode"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_periode"></i>
                 </div>
             </div>
             <div class="result">
@@ -90,7 +90,7 @@
                 <div class="form_input_text">
                     <input type="number" v-model="kmYear">
                     <p>km</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_kmYear"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_kmYear"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -100,7 +100,7 @@
                 <div class="form_input_text">
                     <input type="number" v-model="fuelPrice">
                     <p>kr./l</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_fuelPrice"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_fuelPrice"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -110,7 +110,7 @@
                 <div class="form_input_text">
                     <p>{{carData.fuelEfficiency.toLocaleString('dk-DK')}}</p>
                     <p>km/l</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_km_l"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_km_l"></i>
                 </div>
             </div>
             <div class="result">
@@ -150,7 +150,7 @@
                 <div class="form_input_text">
                     <input type="number" v-model="summertyres">
                     <p>kr.</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_summertyres"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_summertyres"></i>
                 </div>
                 <div class="include_price">
                     <p>Medregn i budgettet</p>
@@ -164,7 +164,7 @@
                 <div class="form_input_text">
                     <input type="number" v-model="wintertyres">
                     <p>kr.</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modalbox_wintertyres"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_wintertyres"></i>
                 </div>
                 <div class="include_price">
                     <p>Medregn i budgettet</p>
@@ -206,7 +206,7 @@
                 <div class="form_input_text">
                     <p>{{tyrestorage.toFixed(2).replace('.',',')}}</p>
                     <p>kr. pr. måned</p>
-                    <i class="fa fa-info-circle" aria-hidden="true" @click="modal_tyrestorage"></i>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modal_tyrestorage"></i>
                 </div>
             </div>
             <div class="total">
@@ -358,7 +358,7 @@ export default {
         modalbox_periode(){
             this.info = 'periode';
             this.modalTitle = 'Budgetperiode';
-            this.modalText = 'Angiv hvor lang en periode du ønsker at se budgettet over. Du har mulighed for at vælge imellem: pr. måned, pr. år eller over hele din leasingperiode.';
+            this.modalText = 'Angiv hvor lang en periode du ønsker at se budgettet over. Du har mulighed for at vælge imellem: pr. måned, pr. år eller over hele leasingperioden.';
         },
         modalbox_kmYear(){
             this.info = 'kmYear';
