@@ -45,7 +45,7 @@
                     <label>Forsikring:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="number" v-model="forsikring">
+                    <input type="number" v-model="forsikring" min="0">
                     <p>kr. pr. måned</p>
                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
                 </div>
@@ -79,7 +79,7 @@
             </div>
         </form>
     </div>
-    <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen_2' : 'notOpen']" v-if="carData.fuelType == ('Benzin' || 'Diesel')">
+    <div class="form_btn_container" :class="[isOpen_2 ? 'isOpen_2' : 'notOpen']" v-if="carData.fuelType == 'Benzin' || carData.fuelType == 'Diesel'">
         <button v-if="!isOpen_2" class="form_btn" @click="toggle2"><strong>Beregn brændstofforbrug</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle2"><strong>Beregn brændstofforbrug</strong><i class="fa fa-angle-up"></i></button>
         <form>
