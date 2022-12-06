@@ -14,7 +14,7 @@
                     <p>kr.</p>
                     <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_firstPayment"></i>
                 </div>
-                <div class="include_price">
+                <div v-if="periode == leasingPeriod" class="include_price">
                     <p>Medregn i budgettet</p>
                     <input type="checkbox" v-model="include_firstPayment">
                 </div>
@@ -24,10 +24,8 @@
                     <label>Leasingpris:</label>
                 </div>
                 <div class="form_input_text">
-                    <p v-if="periode == 'vaelg'">{{carData.monthlyPayment.toLocaleString('dk-DK')}}</p>
-                    <p v-else>{{(carData.monthlyPayment*periode).toLocaleString('dk-DK')}}</p>
-                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
-                    <p v-else>kr. pr. måned</p>
+                    <p>{{carData.monthlyPayment.toLocaleString('dk-DK')}}</p>
+                    <p>kr. pr. måned</p>
                     <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_leasingpris"></i>
                 </div>
             </div>
@@ -36,12 +34,9 @@
                     <label>Grøn ejerafgift:</label>
                 </div>
                 <div class="form_input_text">
-                    <p v-if="(Number.isInteger(carData.semiAnnualVehicleExciseDuty/6) && periode == 'vaelg')">{{(carData.semiAnnualVehicleExciseDuty/6)}}</p>
-                    <p v-else-if="(Number.isInteger(carData.semiAnnualVehicleExciseDuty/6) && periode != 'vaelg')">{{(carData.semiAnnualVehicleExciseDuty/6*periode)}}</p>
-                    <p v-else-if="(!Number.isInteger(carData.semiAnnualVehicleExciseDuty/6)) && periode == 'vaelg'">{{(carData.semiAnnualVehicleExciseDuty/6).toFixed(2).replace('.', ',')}}</p>
-                    <p v-else>{{(carData.semiAnnualVehicleExciseDuty/6*periode).toFixed(2).replace('.', ',')}}</p>
-                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
-                    <p v-else>kr. pr. måned</p>
+                    <p v-if="(Number.isInteger(carData.semiAnnualVehicleExciseDuty/6))">{{(carData.semiAnnualVehicleExciseDuty/6)}}</p>
+                    <p v-else>{{(carData.semiAnnualVehicleExciseDuty/6).toFixed(2).replace('.', ',')}}</p>
+                    <p>kr. pr. måned</p>
                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_ejerafgift"></i>
                 </div>
             </div>
@@ -50,10 +45,9 @@
                     <label>Forsikring:</label>
                 </div>
                 <div class="form_input_text">
-                    <input type="number" v-model="forsikring_total" min="0">
-                    <p v-if="periode > 1">kr. for {{periode}} måneder</p>
-                    <p v-else>kr. pr. måned</p>
-                   <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
+                    <input type="number" v-model="forsikring" min="0">
+                    <p>kr. pr. måned</p>
+                    <i class="fa fa-question-circle" aria-hidden="true" @click="modalbox_forsikring"></i>
                 </div>
             </div>
             <div class="form_input">
@@ -255,12 +249,11 @@ export default {
             isOpen_3: false,
             isOpen_4: false,
             include_firstPayment: false,
-            forsikring: null,
+            forsikring: 361,
             periode: 'vaelg',
             monthly: 1,
             yearly: 12,
             leasingPeriod: this.data[0].leasingPeriod,
-            periode_fuel: 'vaelg',
             kmYear: null,
             fuelPrice: null,
             wintertyres: null,
@@ -274,19 +267,12 @@ export default {
         }
     },
     computed: {
-        forsikring_total(){
-            if(this.periode == 'vaelg'){
-                return this.forsikring = 361;
-            }else{
-                return this.forsikring = 361*this.periode
-            }
-        },
         total_car(){
             let total;
             if(this.include_firstPayment){
-                total = ((this.carData.firstPayment/this.carData.leasingPeriod*this.periode) + (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring));
+                total = ((this.carData.firstPayment/this.carData.leasingPeriod*this.periode) + (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring*this.periode));
             }else{
-                total = (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring);
+                total = (this.carData.monthlyPayment*this.periode) + ((this.carData.semiAnnualVehicleExciseDuty/6)*this.periode) + (this.forsikring*this.periode);
             }
            return total;
         },
@@ -294,6 +280,8 @@ export default {
             let total_fuel;
             if(this.fuelPrice != null && this.kmYear != null){
                 total_fuel = ((((this.kmYear/this.carData.fuelEfficiency)*this.fuelPrice.replace(',','.'))/12));
+            }else{
+                total_fuel = 0;
             }
             return total_fuel;
         },
@@ -307,8 +295,8 @@ export default {
             let total_with_tyres;
             let total_car = Number(this.total_car);
             let total_fuel = Number(this.total_fuel);
-            let winterwheels = (Number(this.winterwheels)/this.leasingPeriod)*this.periode;
             let wintertyres = (Number(this.wintertyres)/this.leasingPeriod)*this.periode;
+            let winterwheels = (Number(this.winterwheels)/this.leasingPeriod)*this.periode;
 
             if(this.include_wintertyres && this.include_winterwheels){
                 total_with_tyres = total_car + total_fuel + wintertyres + winterwheels;
