@@ -287,14 +287,14 @@ export default {
         },
         total_car_and_fuel(){
             let total_car = Number(this.total_car);
-            let total_fuel = Number(this.total_fuel);
-            let total_car_and_fuel = total_car + total_fuel*this.periode;
+            let total_fuel = Number(this.total_fuel)*this.periode;
+            let total_car_and_fuel = total_car + total_fuel;
             return total_car_and_fuel;
         },
         total_with_tyres(){
             let total_with_tyres;
             let total_car = Number(this.total_car);
-            let total_fuel = Number(this.total_fuel);
+            let total_fuel = Number(this.total_fuel)*this.periode;
             let wintertyres = (Number(this.wintertyres)/this.leasingPeriod)*this.periode;
             let winterwheels = (Number(this.winterwheels)/this.leasingPeriod)*this.periode;
 
