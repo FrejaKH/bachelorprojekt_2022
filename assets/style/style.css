@@ -271,7 +271,16 @@ body {
 }
 
 .budgetform_container h4{
-    text-align: center;
+    margin-bottom: 20px;
+}
+
+.budgetform_description p{
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.budgetform_description p:nth-child(2){
+    margin-bottom: 20px;
 }
 
 .form_btn_container{
@@ -313,7 +322,7 @@ body {
 }
 
 .isOpen_3{
-    height: 380px;
+    height: 300px;
     border: 1px solid var(--av-dark-grey);
     transition: height 1.5s;
 }
@@ -568,13 +577,13 @@ body {
         margin-left: 0;
     }
     .isOpen_1{
-        height: 660px;
+        height: 620px;
     }
     .isOpen_2{
-        height: 560px;
+        height: 570px;
     }
     .isOpen_3{
-        height: 550px;
+        height: 450px;
     }
     .isOpen_4{
         height: 280px;

@@ -13,8 +13,8 @@ export default async function ({store}){
    store.commit('saveCars', obj)
 }
 
-// Dette er en backup til, hvis API'et ikke virker
 
+// Nedenstående kode er en backup til, hvis Autohuset Vestergaards API ikke virker
 
 // import Data from '../assets/data/data.json';
 

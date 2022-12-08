@@ -1,6 +1,10 @@
 <template>
   <div class="budgetform_container">
     <h4>Beregn dit bilbudget</h4>
+    <div class="budgetform_description">
+        <p>Nedenfor har du mulighed for at beregne, hvad det vil koste at lease denne bil inkl. grøn ejerafgift og forsikring.</p>
+        <p>Tryk på den beregner, som du ønsker at bruge. Du har også mulighed for at åbne flere på en gang.</p>
+    </div>
     <div class="form_btn_container" :class="[isOpen_1 ? 'isOpen_1' : 'notOpen']">
         <button v-if="!isOpen_1" class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-down"></i></button>
         <button v-else class="form_btn" @click="toggle1"><strong>Beregn bilbudget</strong><i class="fa fa-angle-up"></i></button>
@@ -167,16 +171,6 @@
                 <div class="include_price">
                     <p>Medregn i budgettet</p>
                     <input type="checkbox" v-model="include_winterwheels">
-                </div>
-            </div>
-            <div class="result">
-                <div class="result_heading">
-                    <label>Totalt:</label>
-                </div>
-                <div class="result_text">
-                    <p v-if="wintertyres || winterwheels ">{{Number(wintertyres) + Number(winterwheels)}}</p>
-                    <p v-else></p>
-                    <p>kr.</p>
                 </div>
             </div>
             <div class="total">

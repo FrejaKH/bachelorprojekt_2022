@@ -1,8 +1,14 @@
 # bachelorprojekt_2022
 Vejledning til at køre projektet.
-Til at få mit projekt til at køre, skal du først skrive: "npm install" i en terminal. Hertil vil du installere de nødvendige dependencies.
-Herefter skal du i terminalen skrive: "npm run dev", hvortil terminalen (højst sandsynlig) vil angive et link, som vil være http://localhost:3000/
-Åben dette link, og projektet åbnes.   
+
+Til at få mit projekt til at køre, skal du udføre følgende steps:
+
+Åben projektmappen "bachelorprojekt_2022" i en terminal.
+Skriv "npm install" i terminalen (efter stien og mappenavnet) - hertil vil du installere de nødvendige dependencies.
+Skriv herefter "npm run dev", hvortil terminalen vil angive et link, som vil være http://localhost:3000/
+Åben dette link, og projektet åbnes.
+
+Den online version af projektet kan ses her: https://frejakh-bachelorprojekt.netlify.app/
 
 
 ## Build Setup
